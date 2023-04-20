@@ -1,0 +1,16 @@
+﻿@page "/"
+@inject GameService GameService
+
+<h3>Mediaeval Fight For Food</h3>
+
+
+<GameBoard/>
+
+@code {
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        GameService.InitializeGame(new UnitFactory());
+    }
+}

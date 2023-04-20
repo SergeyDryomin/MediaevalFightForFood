@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Archer" xml:space="preserve">
+    <value>Лучник</value>
+  </data>
+  <data name="Authors" xml:space="preserve">
+    <value>Авторы: Андрей и Сергей Дрёмины</value>
+  </data>
+  <data name="Cannon" xml:space="preserve">
+    <value>Пушка</value>
+  </data>
+  <data name="Collector" xml:space="preserve">
+    <value>Сборщик</value>
+  </data>
+  <data name="DescriptionBody" xml:space="preserve">
+    <value>Первая сторона зелёные - 2 сборщика еды (единственные , кто могут стоять на еде, но не умеют атаковать и гибнут сразу при любой атаке не нанося урон), 2 лучника (бьют на 2 по горизонтали и вертикали и на одну по диогонали, если их атакуют гибнут сразу не нанося урон) и 1 лопатник(единственный юнит у кого есть 2 HP и при атаке лопатника оба погибают , если у них равное HP или теряет 1 HP , атакуя рыцаря);
+    Вторая сторона красные - 1 сборщик, 2 рыцаря (1 HP и атакуют на 1 клетку, если атакует лопатник, то тот теряет 1 HP), 1 лопатник и 1 пушка(стреляет на 3 клетки по горизонтали и вертикали).
+    Зелёные начинают в левом верхем угле и ходят первыми, а красные в правом нижнем.
+    Каждый раз наши юниты рандомно расставлаются на карте и игрок точно не знает кем будет делать первый ход у каждого юнита.
+    Цель игры или уничтожить все юниты противника или занять 2 клетки базы противника.
+    Еда нужна для того чтобы убитые юниты восстанавливались на месте их локации и когда сбощик встал на еду то его команда к его следующему ходу накопит 1 еду(больше накопить нельзя) - игрок выбирает точку куда ему восстановиться из 5 стартовых возможных и не занятых.
+    Юниты не могут становиться друг на друга(кроме сборщиков на еде) и стрелять через другие юниты или через еду.</value>
+  </data>
+  <data name="DescriptionHeader" xml:space="preserve">
+    <value>Описание игры</value>
+  </data>
+  <data name="GreenUnits" xml:space="preserve">
+    <value>Зелёные юниты</value>
+  </data>
+  <data name="Knight" xml:space="preserve">
+    <value>Рыцарь</value>
+  </data>
+  <data name="RedUnits" xml:space="preserve">
+    <value>Красные юниты</value>
+  </data>
+  <data name="Shovelman" xml:space="preserve">
+    <value>Лопатник</value>
+  </data>
+</root>

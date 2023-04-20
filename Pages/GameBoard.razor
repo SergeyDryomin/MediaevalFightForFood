@@ -1,0 +1,167 @@
+﻿@using System.Globalization
+@inject GameService GameService
+<!DOCTYPE html>
+<div class="game-board">
+    @for (int y = 0; y < GameService.GameBoard.Height; y++)
+    {
+        <div class="game-row">
+            @for (int x = 0; x < GameService.GameBoard.Width; x++)
+            {
+                int localX = x;
+                int localY = y;
+                <div class="game-cell" @onclick="() => CellClicked(localX, localY)">
+                    @RenderCellContent(x, y)
+                </div>
+            }
+        </div>
+    }
+
+</div>
+
+<div class="dead-units">
+    @foreach (var deadUnit in GameService.CurrentTeam.DeadUnits)
+    {
+        <div class="dead-unit @GutUnitStyle(deadUnit)" @onclick="() => DeadUnitClicked(deadUnit)">
+        </div>
+    }
+</div>
+
+<div class="game-result">
+    @if (GameService.IsCurrentTeamWon() == true)
+    {
+        <p>Победитель: @GameService.CurrentTeam.TeamType!</p>
+    }
+    else if (GameService.IsCurrentTeamWon() == null)
+    {
+        <p>Ничья!</p>
+    }
+</div>
+
+
+@code {
+    private Unit? _selectedUnit;
+    private bool _isReviving;
+
+    private void CellClicked(int x, int y)
+    {
+        Cell cell = GameService.GameBoard.Cells[x, y];
+
+        if (_isReviving && _selectedUnit is not null)
+        {
+            if (GameService.GameBoard.IsValidPositionToRevive(_selectedUnit, x, y))
+            {
+                GameService.ReviveUnit(_selectedUnit, x, y);
+                _isReviving = false;
+                StateHasChanged();
+                
+            }
+
+            return;
+        }
+
+        if (_selectedUnit is not null)
+        {
+            if (GameService.MoveUnit(_selectedUnit, x, y))
+            {
+                ChangeEndTurnState();
+            }
+            else if (GameService.Attack(_selectedUnit, cell.Units))
+            {
+                ChangeEndTurnState();
+            }
+            else
+            {
+                _selectedUnit = null;
+                StateHasChanged();
+            }
+        }
+        
+        if (_selectedUnit is null || 
+                 GameService.HasSameTeamTypeUnit(_selectedUnit, cell))
+        {
+            _selectedUnit = GameService.TakeUnit(cell);
+            StateHasChanged();
+        }
+    }
+
+    private void ChangeEndTurnState()
+    {
+        _selectedUnit = null;
+        GameService.EndTurn();
+        if(GameService.IsCurrentTeamWon() == false)
+            GameService.StartTurn(ref _isReviving);
+        StateHasChanged();
+    }
+
+    private void DeadUnitClicked(Unit deadUnit)
+    {
+        if (_isReviving)
+        {
+            _selectedUnit = deadUnit;
+            StateHasChanged();
+        }
+    }
+
+    private RenderFragment RenderCellContent(int x, int y)
+    {
+        Cell cell = GameService.GameBoard.Cells[x, y];
+        return builder =>
+        {
+            // Отрисовка стартовых позиций
+            if (cell.StartPosition is not null)
+            {
+                builder.OpenElement(0, "div");
+                builder.AddAttribute(1, "class", $"start-position {cell.StartPosition.ToString().ToLower()}-team-start");
+                builder.CloseElement();
+            }
+
+            // Отрисовка юнитов
+            if (cell.Units.FirstOrDefault() != null)
+            {
+                foreach (var unit in cell.Units)
+                {
+                    
+                    
+                    builder.OpenElement(0, "div");
+                    builder.AddAttribute(1, "class", $"unit {GutUnitStyle(unit)} ");
+                    if (!unit.IsFullHealth())
+                    {
+                        string scalePercentage = GetScalePercentage(unit.Health, unit.MaxHealth);
+                        builder.AddAttribute(2, "style", $"transform: scale({scalePercentage});");
+                    }
+
+                    builder.CloseElement();
+                }
+            }
+            // Отрисовка еды
+            else if (cell.HasFood)
+            {
+                builder.OpenElement(0, "div");
+                builder.AddAttribute(1, "class", "food");
+                builder.CloseElement();
+            }
+            // Отрисовка пустой клетки
+            else
+            {
+                builder.OpenElement(0, "div");
+                builder.AddAttribute(1, "class", "empty");
+                builder.CloseElement();
+            }
+        };
+    }
+
+    private string GetScalePercentage(float health, float maxHealth)
+    {
+        float scale = 0.5f + (health / maxHealth) * 0.5f;
+        return scale.ToString("0.##", CultureInfo.InvariantCulture);
+    }
+
+    private string GutUnitStyle(Unit unit)
+    {
+        string unitType = unit.GetType().Name.ToLower();
+        string teamColor = unit.TeamType.ToString().ToLower();
+        string selectedClass = _selectedUnit == unit ? "selected" : ""; //!= null && cell.Units.Contains(_selectedUnit) ? "selected-unit" : "";
+        string unitFirstMove = unit.IsFirstMove ? "hidden" : $"{unitType}";
+        return $"{unitFirstMove} {selectedClass} {teamColor}-team";
+    }
+}
