@@ -133,10 +133,10 @@ public class GameService
         if (Teams.Where( t => t != CurrentTeam).All(u => u.Units.Count == 0) ||
             CurrentTeam.Units.Count(u => u.Cell?.StartPosition != null && u.Cell?.StartPosition != CurrentTeam.TeamType) >= 2)
         {
-            return true;
+            // Return null if all units dead for draw game or false
+            return CurrentTeam.Units.Count == 0 ? null : true;
         }
 
-        // Return null if all units dead for draw game or false
-        return Teams.All(u => u.Units.Count == 0) ? null : false;
+        return  false;
     }
 }

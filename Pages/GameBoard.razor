@@ -32,9 +32,9 @@
     @if (_isCurrentTeamWon == true)
     {
         <p>
-            @_resourceRu.GetString("Winner"): @_resourceRu.GetString(GameService.CurrentTeam.TeamType.ToString()) !
+            @_resourceRu.GetString("Winner"): @_resourceRu.GetString(GameService.CurrentTeam.TeamType.ToString())!
             <br/>
-            @_resourceEn.GetString("Winner"): @_resourceEn.GetString(GameService.CurrentTeam.TeamType.ToString()) !
+            @_resourceEn.GetString("Winner"): @_resourceEn.GetString(GameService.CurrentTeam.TeamType.ToString())!
         </p>
     }
     else if (_isCurrentTeamWon == null)
@@ -50,9 +50,9 @@
     @if (_isReviving)
     {
         <p>
-            @_resourceRu.GetString("Revive")
+            @_resourceRu.GetString("Revive")!
             <br />
-            @_resourceEn.GetString("Revive")
+            @_resourceEn.GetString("Revive")!
         </p>
     }
 </div>
@@ -72,9 +72,10 @@
 
         Cell cell = GameService.GameBoard.Cells[x, y];
 
-        if (_isReviving && _selectedUnit is not null)
+        if (_isReviving )
         {
-            if (GameService.GameBoard.IsValidPositionToRevive(_selectedUnit, x, y))
+            if (_selectedUnit is not null && 
+                GameService.GameBoard.IsValidPositionToRevive(_selectedUnit, x, y))
             {
                 GameService.ReviveUnit(_selectedUnit, x, y);
                 _isReviving = false;
@@ -100,8 +101,7 @@
                 StateHasChanged();
             }
         }
-        
-        if (_selectedUnit is null || 
+        else if (_selectedUnit is null || 
                  GameService.HasSameTeamTypeUnit(_selectedUnit, cell))
         {
             _selectedUnit = GameService.TakeUnit(cell);
@@ -112,13 +112,10 @@
     private void ChangeEndTurnState()
     {
         _selectedUnit = null;
-        if (GameService.IsCurrentTeamWon() == false)
+        _isCurrentTeamWon = GameService.IsCurrentTeamWon();
+        if (_isCurrentTeamWon == false)
         {
             GameService.StartTurn(ref _isReviving);
-        }
-        else
-        {
-            _isCurrentTeamWon = true;
         }
 
         StateHasChanged();
