@@ -4,16 +4,15 @@ using MediaevalFightForFood.Models.Units.Base;
 using GameBoard = MediaevalFightForFood.Models.GameBoard;
 
 namespace MediaevalFightForFood.Services;
-public class GameService
+public class GameService : IGameService
 {
-    public GameBoard GameBoard { get; private set; }
-    public Team CurrentTeam;
-    public List<Team> Teams ;
-
-    public void InitializeGame(IUnitFactory unitFactory)
+    public GameBoard GameBoard { get; set; }
+    public Team CurrentTeam { get; set; }
+    private readonly List<Team> Teams ;
+    public GameService(IUnitFactory unitFactory)
     {
         Teams = new List<Team>();
-        GameBoard = new GameBoard( unitFactory, Teams , 9, 5 );
+        GameBoard = new GameBoard(unitFactory, Teams, 9, 5);
         CurrentTeam = Teams.First();
     }
 

@@ -1,3 +1,4 @@
+using MediaevalFightForFood.Models;
 using MediaevalFightForFood.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,7 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<GameService>();
+builder.Services.AddScoped<IUnitFactory, UnitFactory>();
+builder.Services.AddScoped<IGameService, GameService>();
 
 var app = builder.Build();
 

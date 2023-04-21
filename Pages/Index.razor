@@ -1,7 +1,7 @@
 ﻿@page "/"
 @using System.Resources
 @using MediaevalFightForFood.Resources
-@inject GameService GameService
+@inject IGameService GameService
 
 <h3>
     @_resourceRu.GetString("GameHeader") - @_resourceEn.GetString("GameHeader")
@@ -11,12 +11,6 @@
 <GameBoard/>
 
 @code {
-    private ResourceManager _resourceRu = new(typeof(GameRu));
-    private ResourceManager _resourceEn = new(typeof(GameEn));
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        GameService.InitializeGame(new UnitFactory());
-    }
+    private readonly ResourceManager _resourceRu = new(typeof(GameRu));
+    private readonly ResourceManager _resourceEn = new(typeof(GameEn));
 }

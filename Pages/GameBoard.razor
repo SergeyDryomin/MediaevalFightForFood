@@ -1,7 +1,7 @@
 ﻿@using System.Globalization
 @using System.Resources
 @using MediaevalFightForFood.Resources
-@inject GameService GameService
+@inject IGameService GameService
 <!DOCTYPE html>
 <div class="game-board">
     @for (int y = 0; y < GameService.GameBoard.Height; y++)
