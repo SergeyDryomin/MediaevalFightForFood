@@ -178,6 +178,16 @@ a, .btn-link {
 	background-color: rgba(0, 255, 255, 0.2);
 }
 
+.selected-dead {
+	position: relative;
+	top: -2px;
+	left: -2px;
+	right: -2px;
+	bottom: -2px;
+	border: 2px solid orange;
+	pointer-events: none;
+}
+
 .selected::before {
 	content: "";
 	position: absolute;
@@ -205,33 +215,12 @@ a, .btn-link {
 	background-image: url('/images/SkinGreen.png');
 }
 
-
-
-/*
-.unit-image-container {
-	position: relative;
+.revive-units-advise,
+.game-result {
+	font-size: 24px;
+	font-weight: bold;
+	color: #333;
+	text-align: left;
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
-
-.unit-image-container::before {
-	content: "";
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: linear-gradient(to top, rgba(0, 0, 0, 0.5) var(--gradient-percentage), transparent var(--gradient-percentage));
-	z-index: 1;
-}
-
-
-.unit.first-move.green-team {
-	background-color: green;
-}
-
-.unit.first-move.red-team {
-	background-color: red;
-}
-.unit.hidden {
-	opacity: 0;
-}
-*/

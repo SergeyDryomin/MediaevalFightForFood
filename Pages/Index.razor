@@ -1,12 +1,19 @@
 ﻿@page "/"
+@using System.Resources
+@using MediaevalFightForFood.Resources
 @inject GameService GameService
 
-<h3>Mediaeval Fight For Food</h3>
+<h3>
+    @_resourceRu.GetString("GameHeader")
+    @_resourceEn.GetString("GameHeader")
+</h3>
 
 
 <GameBoard/>
 
 @code {
+    private ResourceManager _resourceRu = new(typeof(GameRu));
+    private ResourceManager _resourceEn = new(typeof(GameEn));
     protected override void OnInitialized()
     {
         base.OnInitialized();

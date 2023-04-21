@@ -1,4 +1,6 @@
 ﻿@using System.Globalization
+@using System.Resources
+@using MediaevalFightForFood.Resources
 @inject GameService GameService
 <!DOCTYPE html>
 <div class="game-board">
@@ -21,19 +23,37 @@
 <div class="dead-units">
     @foreach (var deadUnit in GameService.CurrentTeam.DeadUnits)
     {
-        <div class="dead-unit @GutUnitStyle(deadUnit)" @onclick="() => DeadUnitClicked(deadUnit)">
+        <div class="dead-unit @GutUnitStyle(deadUnit, true)" @onclick="() => DeadUnitClicked(deadUnit)">
         </div>
     }
 </div>
 
 <div class="game-result">
-    @if (GameService.IsCurrentTeamWon() == true)
+    @if (_isCurrentTeamWon == true)
     {
-        <p>Победитель: @GameService.CurrentTeam.TeamType!</p>
+        <p>
+            @_resourceRu.GetString("Winner"): @_resourceRu.GetString(GameService.CurrentTeam.TeamType.ToString()) !
+            <br/>
+            @_resourceEn.GetString("Winner"): @_resourceEn.GetString(GameService.CurrentTeam.TeamType.ToString()) !
+        </p>
     }
-    else if (GameService.IsCurrentTeamWon() == null)
+    else if (_isCurrentTeamWon == null)
     {
-        <p>Ничья!</p>
+        <p>
+            @_resourceRu.GetString("Draw")
+            <br />
+            @_resourceEn.GetString("Draw")
+        </p>
+    }
+</div>
+<div class="revive-units-advise">
+    @if (_isReviving)
+    {
+        <p>
+            @_resourceRu.GetString("Revive")
+            <br />
+            @_resourceEn.GetString("Revive")
+        </p>
     }
 </div>
 
@@ -41,9 +61,15 @@
 @code {
     private Unit? _selectedUnit;
     private bool _isReviving;
+    private bool? _isCurrentTeamWon = false;
+    private ResourceManager _resourceRu = new (typeof(GameRu));
+    private ResourceManager _resourceEn = new (typeof(GameEn));
 
     private void CellClicked(int x, int y)
     {
+        if (_isCurrentTeamWon != false)
+            return;
+
         Cell cell = GameService.GameBoard.Cells[x, y];
 
         if (_isReviving && _selectedUnit is not null)
@@ -53,7 +79,6 @@
                 GameService.ReviveUnit(_selectedUnit, x, y);
                 _isReviving = false;
                 StateHasChanged();
-                
             }
 
             return;
@@ -87,9 +112,15 @@
     private void ChangeEndTurnState()
     {
         _selectedUnit = null;
-        GameService.EndTurn();
-        if(GameService.IsCurrentTeamWon() == false)
+        if (GameService.IsCurrentTeamWon() == false)
+        {
             GameService.StartTurn(ref _isReviving);
+        }
+        else
+        {
+            _isCurrentTeamWon = true;
+        }
+
         StateHasChanged();
     }
 
@@ -120,8 +151,6 @@
             {
                 foreach (var unit in cell.Units)
                 {
-                    
-                    
                     builder.OpenElement(0, "div");
                     builder.AddAttribute(1, "class", $"unit {GutUnitStyle(unit)} ");
                     if (!unit.IsFullHealth())
@@ -152,15 +181,16 @@
 
     private string GetScalePercentage(float health, float maxHealth)
     {
-        float scale = 0.5f + (health / maxHealth) * 0.5f;
+        float scale = 0.5f + health / maxHealth * 0.5f;
         return scale.ToString("0.##", CultureInfo.InvariantCulture);
     }
 
-    private string GutUnitStyle(Unit unit)
+    private string GutUnitStyle(Unit unit, bool isDead = false)
     {
         string unitType = unit.GetType().Name.ToLower();
         string teamColor = unit.TeamType.ToString().ToLower();
-        string selectedClass = _selectedUnit == unit ? "selected" : ""; //!= null && cell.Units.Contains(_selectedUnit) ? "selected-unit" : "";
+        string dead = isDead ? "-dead" : string.Empty;
+        string selectedClass = _selectedUnit == unit ? $"selected{dead}" : string.Empty;
         string unitFirstMove = unit.IsFirstMove ? "hidden" : $"{unitType}";
         return $"{unitFirstMove} {selectedClass} {teamColor}-team";
     }

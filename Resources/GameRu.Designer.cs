@@ -22,14 +22,14 @@ namespace MediaevalFightForFood.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class GameDescriptionResourcesEn {
+    public class GameRu {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal GameDescriptionResourcesEn() {
+        internal GameRu() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace MediaevalFightForFood.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MediaevalFightForFood.Resources.GameDescriptionResourcesEn", typeof(GameDescriptionResourcesEn).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MediaevalFightForFood.Resources.GameRu", typeof(GameRu).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,93 +61,65 @@ namespace MediaevalFightForFood.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Archer.
+        ///   Looks up a localized string similar to Описание.
         /// </summary>
-        public static string Archer {
+        public static string Description {
             get {
-                return ResourceManager.GetString("Archer", resourceCulture);
+                return ResourceManager.GetString("Description", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Andrey&amp;Sergey Dryominy.
+        ///   Looks up a localized string similar to Ничья.
         /// </summary>
-        public static string Authors {
+        public static string Draw {
             get {
-                return ResourceManager.GetString("Authors", resourceCulture);
+                return ResourceManager.GetString("Draw", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cannon.
+        ///   Looks up a localized string similar to Средневековая битва за еду.
         /// </summary>
-        public static string Cannon {
+        public static string GameHeader {
             get {
-                return ResourceManager.GetString("Cannon", resourceCulture);
+                return ResourceManager.GetString("GameHeader", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Collector.
+        ///   Looks up a localized string similar to Зелёный.
         /// </summary>
-        public static string Collector {
+        public static string Green {
             get {
-                return ResourceManager.GetString("Collector", resourceCulture);
+                return ResourceManager.GetString("Green", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to First side green - 2 food collectors (the only ones who can stand on food but can&apos;t attack and die instantly upon any attack without dealing damage), 2 archers (deal 2 damage horizontally and vertically and 1 diagonally, die instantly without dealing damage when attacked) and 1 shovelman (the only unit with 2 HP, both die when attacking each other with equal HP, or lose 1 HP when attacking a knight);
-        ///    Second side red - 1 collector, 2 knights (1 HP and attack on 1 cell, if attacked by a shovelman, the la [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Красный.
         /// </summary>
-        public static string DescriptionBody {
+        public static string Red {
             get {
-                return ResourceManager.GetString("DescriptionBody", resourceCulture);
+                return ResourceManager.GetString("Red", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Game Description.
+        ///   Looks up a localized string similar to Оживи юнит.
         /// </summary>
-        public static string DescriptionHeader {
+        public static string Revive {
             get {
-                return ResourceManager.GetString("DescriptionHeader", resourceCulture);
+                return ResourceManager.GetString("Revive", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Green Units.
+        ///   Looks up a localized string similar to Победитель.
         /// </summary>
-        public static string GreenUnits {
+        public static string Winner {
             get {
-                return ResourceManager.GetString("GreenUnits", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Knight.
-        /// </summary>
-        public static string Knight {
-            get {
-                return ResourceManager.GetString("Knight", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Red Units.
-        /// </summary>
-        public static string RedUnits {
-            get {
-                return ResourceManager.GetString("RedUnits", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Shovelman.
-        /// </summary>
-        public static string Shovelman {
-            get {
-                return ResourceManager.GetString("Shovelman", resourceCulture);
+                return ResourceManager.GetString("Winner", resourceCulture);
             }
         }
     }

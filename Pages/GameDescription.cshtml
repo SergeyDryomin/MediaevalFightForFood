@@ -3,78 +3,78 @@
 @using MediaevalFightForFood.Resources
 
 @{
-    var resourceManager = new ResourceManager(typeof(GameDescriptionResourcesRu));
-    var resourceManagerEn = new ResourceManager(typeof(GameDescriptionResourcesEn));
+    var resourceRu = new ResourceManager(typeof(GameDescriptionRu));
+    var resourceEn = new ResourceManager(typeof(GameDescriptionEn));
 }
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Game Description</title>
+    <title>@resourceRu.GetString("DescriptionHeader") - @resourceEn.GetString("DescriptionHeader")</title>
     <link href="css/site.css" rel="stylesheet" />
 </head>
-<h1>@resourceManager.GetString("DescriptionHeader")</h1>
+<h1>@resourceRu.GetString("DescriptionHeader")</h1>
 
-<p>
-    @resourceManager.GetString("DescriptionBody")
-</p>
+<pre class="pre-wrap">
+    @resourceRu.GetString("DescriptionBody")
+</pre>
 
-<h2>@resourceManager.GetString("GreenUnits")</h2>
+<h2>@resourceRu.GetString("GreenUnits")</h2>
 <div class="unit-description">
-    <div class="unit collector green-team"></div> @resourceManager.GetString("Collector")
+    <div class="unit collector green-team"></div> @resourceRu.GetString("Collector")
 </div>
 <div class="unit-description">
-    <div class="unit archer green-team"></div> @resourceManager.GetString("Archer")
+    <div class="unit archer green-team"></div> @resourceRu.GetString("Archer")
 </div>
 <div class="unit-description">
-    <div class="unit shovelman green-team"></div> @resourceManager.GetString("Shovelman")
-</div>
-
-<h2>@resourceManager.GetString("RedUnits")</h2>
-<div class="unit-description">
-    <div class="unit collector red-team"></div> @resourceManager.GetString("Collector")
-</div>
-<div class="unit-description">
-    <div class="unit knight red-team"></div> @resourceManager.GetString("Knight")
-</div>
-<div class="unit-description">
-    <div class="unit shovelman red-team"></div> @resourceManager.GetString("Shovelman")
-</div>
-<div class="unit-description">
-    <div class="unit cannon red-team"></div> @resourceManager.GetString("Cannon")
-</div>
-<h3>@resourceManager.GetString("Authors")</h3>
-
-<h1>@resourceManagerEn.GetString("DescriptionHeader")</h1>
-
-<p>
-    @resourceManagerEn.GetString("DescriptionBody")
-</p>
-
-<h2>@resourceManagerEn.GetString("GreenUnits")</h2>
-<div class="unit-description">
-    <div class="unit collector green-team"></div> @resourceManagerEn.GetString("Collector")
-</div>
-<div class="unit-description">
-    <div class="unit archer green-team"></div> @resourceManagerEn.GetString("Archer")
-</div>
-<div class="unit-description">
-    <div class="unit shovelman green-team"></div> @resourceManagerEn.GetString("Shovelman")
+    <div class="unit shovelman green-team"></div> @resourceRu.GetString("Shovelman")
 </div>
 
-<h2>@resourceManagerEn.GetString("RedUnits")</h2>
+<h2>@resourceRu.GetString("RedUnits")</h2>
 <div class="unit-description">
-    <div class="unit collector red-team"></div> @resourceManagerEn.GetString("Collector")
+    <div class="unit collector red-team"></div> @resourceRu.GetString("Collector")
 </div>
 <div class="unit-description">
-    <div class="unit knight red-team"></div> @resourceManagerEn.GetString("Knight")
+    <div class="unit knight red-team"></div> @resourceRu.GetString("Knight")
 </div>
 <div class="unit-description">
-    <div class="unit shovelman red-team"></div> @resourceManagerEn.GetString("Shovelman")
+    <div class="unit shovelman red-team"></div> @resourceRu.GetString("Shovelman")
 </div>
 <div class="unit-description">
-    <div class="unit cannon red-team"></div> @resourceManagerEn.GetString("Cannon")
+    <div class="unit cannon red-team"></div> @resourceRu.GetString("Cannon")
 </div>
-<h3>@resourceManagerEn.GetString("Authors")</h3>
+<h3>@resourceRu.GetString("Authors")</h3>
+
+<h1>@resourceEn.GetString("DescriptionHeader")</h1>
+
+<pre class="pre-wrap">
+    @resourceEn.GetString("DescriptionBody")
+</pre>
+
+<h2>@resourceEn.GetString("GreenUnits")</h2>
+<div class="unit-description">
+    <div class="unit collector green-team"></div> @resourceEn.GetString("Collector")
+</div>
+<div class="unit-description">
+    <div class="unit archer green-team"></div> @resourceEn.GetString("Archer")
+</div>
+<div class="unit-description">
+    <div class="unit shovelman green-team"></div> @resourceEn.GetString("Shovelman")
+</div>
+
+<h2>@resourceEn.GetString("RedUnits")</h2>
+<div class="unit-description">
+    <div class="unit collector red-team"></div> @resourceEn.GetString("Collector")
+</div>
+<div class="unit-description">
+    <div class="unit knight red-team"></div> @resourceEn.GetString("Knight")
+</div>
+<div class="unit-description">
+    <div class="unit shovelman red-team"></div> @resourceEn.GetString("Shovelman")
+</div>
+<div class="unit-description">
+    <div class="unit cannon red-team"></div> @resourceEn.GetString("Cannon")
+</div>
+<h3>@resourceEn.GetString("Authors")</h3>
 <style>
     .unit-description {
         display: flex;
@@ -90,5 +90,10 @@
 
     h1 {
         color: limegreen
+    }
+
+    .pre-wrap {
+        white-space: pre-wrap;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
 </style>

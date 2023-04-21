@@ -7,31 +7,52 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
+    <Compile Remove="Data\**" />
+    <Content Remove="Data\**" />
+    <EmbeddedResource Remove="Data\**" />
+    <None Remove="Data\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Resources\GameDescriptionResourcesEn.Designer.cs">
-      <DependentUpon>GameDescriptionResourcesEn.resx</DependentUpon>
+    <Compile Update="Resources\GameDescriptionEn.Designer.cs">
+      <DependentUpon>GameDescriptionEn.resx</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Update="Resources\GameDescriptionResourcesRu.Designer.cs">
+    <Compile Update="Resources\GameDescriptionRu.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>GameDescriptionResourcesRu.resx</DependentUpon>
+      <DependentUpon>GameDescriptionRu.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\GameRu.Designer.cs">
+      <DependentUpon>GameRu.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Resources\GameEn.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>GameEn.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Resources\GameDescriptionResourcesEn.resx">
+    <EmbeddedResource Update="Resources\GameDescriptionEn.resx">
       <SubType>Designer</SubType>
-      <LastGenOutput>GameDescriptionResourcesEn.Designer.cs</LastGenOutput>
+      <LastGenOutput>GameDescriptionEn.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\GameDescriptionResourcesRu.resx">
+    <EmbeddedResource Update="Resources\GameDescriptionRu.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>GameDescriptionResourcesRu.Designer.cs</LastGenOutput>
+      <LastGenOutput>GameDescriptionRu.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\GameRu.resx">
+      <LastGenOutput>GameRu.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\GameEn.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GameEn.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

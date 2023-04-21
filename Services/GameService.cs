@@ -104,7 +104,7 @@ public class GameService
         return cell.Units.FirstOrDefault( u => u.TeamType == CurrentTeam.TeamType);
     }
 
-    public void EndTurn()
+    public void StartTurn(ref bool isReviving)
     {
         var nextTeamPosition = Teams.IndexOf(CurrentTeam) + 1;
         if (nextTeamPosition == Teams.Count)
@@ -113,10 +113,7 @@ public class GameService
         }
 
         CurrentTeam = Teams[nextTeamPosition];
-    }
 
-    public void StartTurn(ref bool isReviving)
-    {
         CollectFood();
 
         if ( IsReviving() )
@@ -132,16 +129,14 @@ public class GameService
 
     public bool? IsCurrentTeamWon()
     {
-        if (Teams.All(u => u.TeamType == CurrentTeam.TeamType) ||
+        // Check are all other dead or 2 enemy points captured(!!! - fix for more players)
+        if (Teams.Where( t => t != CurrentTeam).All(u => u.Units.Count == 0) ||
             CurrentTeam.Units.Count(u => u.Cell?.StartPosition != null && u.Cell?.StartPosition != CurrentTeam.TeamType) >= 2)
         {
             return true;
         }
-        else if(!Teams.Any())
-        {
-            return null;
-        }
 
-        return false;
+        // Return null if all units dead for draw game or false
+        return Teams.All(u => u.Units.Count == 0) ? null : false;
     }
 }

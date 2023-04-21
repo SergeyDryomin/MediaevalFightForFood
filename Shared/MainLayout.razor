@@ -1,4 +1,6 @@
-﻿@inherits LayoutComponentBase
+﻿@using System.Resources
+@using MediaevalFightForFood.Resources
+@inherits LayoutComponentBase
 
 <PageTitle>MediaevalFightForFood</PageTitle>
 
@@ -9,7 +11,9 @@
 
     <main>
         <div class="top-row px-4">
-            <a href="/game-description" target="_blank">Description</a>
+            <a href="/game-description" target="_blank">
+                @_resourceRu.GetString("Description") - @_resourceEn.GetString("Description")
+            </a>
         </div>
 
         <article class="content px-4">
@@ -17,3 +21,7 @@
         </article>
     </main>
 </div>
+@code {
+    private ResourceManager _resourceRu = new(typeof(GameRu));
+    private ResourceManager _resourceEn = new(typeof(GameEn));
+}
